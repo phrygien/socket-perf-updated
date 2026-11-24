@@ -1,0 +1,32 @@
+{
+  "name": "auctav-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "node -e \"const fs=require('fs'),p=require('path'),cp=require('child_process');const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(p.join(d,e.name)):e.name.endsWith('.js')?[p.join(d,e.name)]:[]);for(const f of ['server.js','config.js',...walk('src')])cp.execFileSync('node',['--check',f]);\"",
+    "lint": "node -e \"const fs=require('fs'),p=require('path'),cp=require('child_process');const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(p.join(d,e.name)):e.name.endsWith('.js')?[p.join(d,e.name)]:[]);for(const f of ['server.js','config.js',...walk('src')])cp.execFileSync('node',['--check',f]);\"",
+    "test": "jest --runInBand --forceExit --testTimeout=10000",
+    "start": "node server.js"
+  },
+  "jest": {
+    "testMatch": [
+      "<rootDir>/tests/**/*.test.js"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^30.3.0",
+    "socket.io-client": "^4.8.3"
+  },
+  "dependencies": {
+    "@socket.io/redis-adapter": "^8.3.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "ioredis": "^5.4.1",
+    "socket.io": "^4.8.3"
+  }
+}
